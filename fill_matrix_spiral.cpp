@@ -1,15 +1,24 @@
 #include <iostream>
 #include <iomanip>
+#include <vector>
 
 using namespace std;
 
 #define M 5
 #define N 5
 
-void printSpiralOrder(int arr[], int mat[M][N])
+void vectGen(int size, vector<int> &vect)
 {
-	int top = 0, bottom = M - 1;
-	int left = 0, right = N - 1;
+   for (int i = 0; i < size; i++)
+   {
+      vect.push_back(i+1);
+   }
+} 
+
+void spiralOrder(vector<int> &arr, vector<vector <int>> &mat)
+{
+	int top = 0, bottom = mat[0].size() - 1;
+	int left = 0, right = mat.size() - 1;
 
 	int index = 0;
 
@@ -19,7 +28,7 @@ void printSpiralOrder(int arr[], int mat[M][N])
 			break;
 		// print top row
 		for (int i = left; i <= right; i++)
-			mat[top][i] = arr[index++];
+			mat[top][i]  = arr[index++];
 		top++;
 
 		if (top > bottom)
@@ -48,15 +57,18 @@ void printSpiralOrder(int arr[], int mat[M][N])
 // Create Spiral Matrix from given array
 int main()
 {
-	int arr[N*N] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
-					16, 17, 18, 19, 20, 21, 22, 23, 24, 25 };
-	int mat[M][N];
+   int size = N*M;
+   vector <int> arr;
+   vectGen(size, arr);
+	// int arr[N*N] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+	// 				16, 17, 18, 19, 20, 21, 22, 23, 24, 25 };
+	vector <vector <int>> mat(N, vector <int> (M));
 
-	printSpiralOrder(arr, mat);
+	spiralOrder(arr, mat);
 
-	for (int i = 0; i < M; i++)
+	for (int i = 0; i < mat.size(); i++)
 	{
-		for (int j = 0; j < N; j++)
+		for (int j = 0; j < mat[0].size(); j++)
 			cout << setw(3) << mat[i][j];
 		cout << '\n';
 	}
