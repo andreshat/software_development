@@ -4,9 +4,6 @@
 
 using namespace std;
 
-#define M 5
-#define N 5
-
 void vectGen(int size, vector<int> &vect)
 {
    for (int i = 0; i < size; i++)
@@ -57,12 +54,15 @@ void spiralOrder(vector<int> &arr, vector<vector <int>> &mat)
 // Create Spiral Matrix from given array
 int main()
 {
-   int size = N*M;
+   int n_rows = 5;
+   int n_cols = 5;
+
+   int size = n_rows * n_cols;
    vector <int> arr;
    vectGen(size, arr);
 	// int arr[N*N] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
 	// 				16, 17, 18, 19, 20, 21, 22, 23, 24, 25 };
-	vector <vector <int>> mat(N, vector <int> (M));
+	vector <vector <int>> mat(n_rows, vector <int> (n_cols));
 
 	spiralOrder(arr, mat);
 
